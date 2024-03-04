@@ -1,10 +1,10 @@
 Feature: Hear shout
-  Scenario: Lucy is located 15 meters from Sean
-    Given Lucy is located 15 meters from Sean
+  Scenario: Listener within range
+    Given Lucy is 15 meters from Sean
     When Sean shouts "free bagels at Sean's"
-    Then Lucy hears Sean's message
+    Then Lucy should hear Sean's message
 
-  Scenario: Lucy is located 1 meter from Sean
-    Given Lucy is located 15 meters from Sean
+  Scenario: Listener hears a different message
+    Given Lucy is 15 meters from Sean
     When Sean shouts "Free coffee!"
-    Then Lucy hears Sean's message
+    Then Lucy should hear Sean's message
