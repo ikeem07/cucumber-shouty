@@ -4,6 +4,7 @@ import { assertThat, is } from 'hamjest';
 
 Before(function () {
   this.network = new Network()
+  this.people = {}
 });
 
 //Given(/^Lucy is located (\d+) meter?s from Sean$/, function (distance) {
@@ -13,19 +14,15 @@ Before(function () {
 //   this.lucy.moveTo(distance)
 // });
  
-Given('a person named Lucy', function () {
-  this.lucy = new Person(this.network)
-});
-
-Given('a person named Sean', function () {
-  this.sean = new Person(this.network)
+Given('a person named {word}', function (name) {
+  this.people[name] = new Person(this.network)
 });
        
 When('Sean shouts {string}', function (message) {
-  this.sean.shout(message)
+  this.people['Sean'].shout(message)
   this.messageFromSean = message
 });
        
 Then('Lucy should hear Sean\'s message', function () {
-  assertThat(this.lucy.messagesHeard(this.messageFromSean), is([this.messageFromSean]))
+  assertThat(this.people['Lucy'].messagesHeard(this.messageFromSean), is([this.messageFromSean]))
 });
