@@ -1,4 +1,4 @@
-import Person from '../../classes/shouty.js';
+import { Person } from '../../classes/shouty.js';
 import { Given, When, Then } from '@cucumber/cucumber';
 import { assertThat, is } from 'hamjest';
 

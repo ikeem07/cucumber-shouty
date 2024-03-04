@@ -12,4 +12,8 @@ class Person {
   }
 }
 
-export default Person;
+class Network {
+
+}
+
+export { Person, Network };
