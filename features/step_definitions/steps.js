@@ -12,14 +12,6 @@ Before(function () {
 //   this.sean = new Person
 //   this.lucy.moveTo(distance)
 // });
-
-Given('Lucy is {int} meter(s) from Sean', function (distance) {
-  this.network  = new Network()
-  this.lucy     = new Person(this.network)
-  this.sean     = new Person(this.network)
-
-  this.lucy.moveTo(distance)
-});
  
 Given('a person named Lucy', function () {
   this.lucy = new Person(this.network)
