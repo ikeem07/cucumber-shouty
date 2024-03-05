@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test && cucumber-js -f @cucumber/pretty-formatter"
+    "test": "mocha test && cucumber-js -f @cucumber/pretty-formatter -f html:report.html"
   },
   "keywords": [],
   "author": "",
