@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "mocha test && cucumber-js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,9 @@
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
     "hamjest": "^4.1.0"
+  },
+  "dependencies": {
+    "mocha": "^10.3.0",
+    "sinon": "^17.0.1"
   }
 }
