@@ -43,7 +43,6 @@ When('Sean shouts {string}', function (message) {
 });
 
 When('Sean shouts the following message', function (message) {
-  console.log('MESSAGE', message)
   this.people['Sean'].shout(message)
   if (!this.messagesShoutedBy['Sean']) this.messagesShoutedBy['Sean'] = []
   this.messagesShoutedBy['Sean'].push(message)
@@ -78,8 +77,6 @@ Then('Lucy hears the following messages:', function (expectedMessages) {
 });
 
 Then('Lucy hears all Sean\'s messages', function () {
-  //console.log('1st', this.people['Lucy'].messagesHeard())
-  //console.log('2nd', this.messagesShoutedBy['Sean'])
   assert.deepEqual(
     this.people['Lucy'].messagesHeard(),
     this.messagesShoutedBy['Sean']
