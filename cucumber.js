@@ -1,4 +1,4 @@
 export default {
-  publishQuiet: true,
+  publish: true,
   order: 'random'
 }
