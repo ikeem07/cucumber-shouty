@@ -2,9 +2,6 @@ Feature: Shout
 
   Shouty allows user to "hear" other users "shouts" as long as they are close enough to each other.
 
-  To do:
-    - only shout to people within a certain distance
-
   Rule: Shouts can be heard by other users
 
     Scenario: Listener hears a message
