@@ -45,7 +45,7 @@ class Network {
 
   _decuctCredits(shortEnough, message, shouter) {
     if (!shortEnough) shouter.credits -= 2
-    shouter.credits -= (message.match(/buy/gi) || [].length) * 5
+    shouter.credits -= (message.match(/buy/gi) || []).length * 5
   }
 }
 
