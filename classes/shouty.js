@@ -1,42 +1,59 @@
 class Person {
-  constructor(network, location) {
-    this.messages = []
-    this.credits = 0
-    this.network = network
-    this.location = location
+  constructor(name, network, location) {
+    this._name = name
+    this._messages = []
+    this._credits = 0
+    this._network = network
+    this._location = location
 
-    this.network.subscribe(this)
+    this._network.subscribe(this)
+  }
+
+  get location() {
+    return this._location
+  }
+
+  moveTo(location) {
+    this._location = location
+    return this
   }
 
   shout(message) {
-    this.network.broadcast(message, this)
+    this._network.broadcast(message, this)
   }
 
   hear(message) {
-    this.messages.push(message)
+    this._messages.push(message)
   }
 
   messagesHeard() {
-    return this.messages
+    return this._messages
   }
 }
 
 class Network {
   constructor(range) {
-    this.listeners = []
-    this.range = range
+    this._listeners = []
+    this._range = range
+  }
+
+  /**
+   * @param {number} newRange
+   */
+  set range(newRange) {
+    this._range = newRange
   }
 
   subscribe(person) {
-    this.listeners.push(person)
+    this._listeners.push(person)
   }
 
   broadcast(message, shouter) {
     const shortEnough = message.length <= 180
     this._decuctCredits(shortEnough, message, shouter)
-    this.listeners.forEach((listener) => {
+    this._listeners.forEach((listener) => {
       const withinRange = 
-        Math.abs(listener.location - shouter.location) <= this.range
+        Math.abs(listener.location - shouter.location) <= this._range
       if (withinRange && (shortEnough || shouter.credits >= 0)) {
         listener.hear(message)
       }
