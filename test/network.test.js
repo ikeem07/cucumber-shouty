@@ -1,6 +1,7 @@
 import assert from 'assert';
 import sinon from 'sinon';
 import { Person, Network } from '../classes/shouty.js';
+import { assertThat, equalTo } from 'hamjest';
 
 describe('Network', () => {
   const range   = 100
@@ -72,5 +73,43 @@ describe('Network', () => {
     network.range = 5
     network.broadcast(message, sean)
     assert.deepEqual(laura.messagesHeard(), [message])
+  })
+
+  context('credits', () => {
+    it('deducts 5 credits for mentioning the word "buy"', () => {
+      const message = 'Come buy these awesome croissants'
+
+      const sean = new Person('Sean', network, 0, 100)
+      const laura = new Person('Laura', network, 10)
+
+      network.subscribe(laura)
+      network.broadcast(message, sean)
+
+      assertThat(sean.credits, equalTo(95))
+    })
+
+    it('deducts 5 credits for mentioning the word "buy"', () => {
+      const message = 'Come buy buy buy these awesome croissants'
+
+      const sean = new Person('Sean', network, 0, 100)
+      const laura = new Person('Laura', network, 10)
+
+      network.subscribe(laura)
+      network.broadcast(message, sean)
+
+      assertThat(sean.credits, equalTo(95))
+    })
+
+    it('deducts 2 credits for messages over 180 characters', () => {
+      const longMessage = 'x'.repeat(181)
+
+      const sean = new Person('Sean', network, 0)
+      const laura = new Person('Laura', network, 10)
+
+      network.subscribe(laura)
+      network.broadcast(longMessage, sean)
+
+      assertThat(sean.credits, equalTo(-2))
+    })
   })
 })

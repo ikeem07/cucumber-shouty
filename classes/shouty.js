@@ -1,8 +1,8 @@
 class Person {
-  constructor(name, network, location) {
+  constructor(name, network, location, credits = 0) {
     this._name = name
     this._messages = []
-    this._credits = 0
+    this._credits = credits
     this._network = network
     this._location = location
 
@@ -11,6 +11,14 @@ class Person {
 
   get location() {
     return this._location
+  }
+
+  set credits(newCredits) {
+    this._credits = newCredits
+  }
+
+  get credits() {
+    return this._credits
   }
 
   moveTo(location) {
@@ -62,7 +70,7 @@ class Network {
 
   _decuctCredits(shortEnough, message, shouter) {
     if (!shortEnough) shouter.credits -= 2
-    shouter.credits -= (message.match(/buy/gi) || []).length * 5
+    shouter.credits -= (message.match(/buy/) || []).length * 5
   }
 }
 
